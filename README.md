@@ -1,4 +1,4 @@
-Smart Telescope Project
+#Smart Telescope Project
 
 Overview
 The Smart Telescope project aims to create a telescope that can be controlled remotely via a mobile application, providing a seamless user experience for astronomy enthusiasts. The project utilizes an ESP32 microcontroller, stepper motors (NEMA 17), servos, and wireless communication to achieve precise movement and cloud integration for remote control. The project will also integrate a camera system for live video streaming and image capturing, all controllable through a custom app built using MIT App Inventor.
