@@ -1,0 +1,66 @@
+from machine import Pin, PWM
+import network
+import socket
+import time
+
+# Define GPIO pins
+REED_SWITCH_PIN = 23  # Reed switch input
+STEP_PIN = 26  # Stepper motor step pin
+DIR_PIN = 27  # Stepper motor direction pin
+SERVO_PIN = 32  # Servo control pin
+
+# Initialize pins
+reed_switch = Pin(REED_SWITCH_PIN, Pin.IN, Pin.PULL_UP)
+step_pin = Pin(STEP_PIN, Pin.OUT)
+dir_pin = Pin(DIR_PIN, Pin.OUT)
+servo = PWM(Pin(SERVO_PIN), freq=50)
+
+# Wi-Fi setup
+SSID = "Your_WiFi_SSID"
+PASSWORD = "Your_WiFi_Password"
+
+station = network.WLAN(network.STA_IF)
+station.active(True)
+station.connect(SSID, PASSWORD)
+
+while not station.isconnected():
+    time.sleep(1)
+    print("Connecting to WiFi...")
+print("Connected to WiFi")
+
+# Start web server
+addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
+s = socket.socket()
+s.bind(addr)
+s.listen(5)
+print("Server running...")
+
+def move_stepper(steps, direction):
+    dir_pin.value(direction)
+    for _ in range(abs(steps)):
+        step_pin.value(1)
+        time.sleep(0.002)
+        step_pin.value(0)
+        time.sleep(0.002)
+
+def go_to_home_position():
+    print("Moving to home position...")
+    while reed_switch.value():  # Move until switch is activated
+        move_stepper(-1, 0)
+    print("Telescope at home position!")
+
+go_to_home_position()
+
+while True:
+    client, addr = s.accept()
+    request = client.recv(1024)
+    request = str(request)
+    print("Request: ", request)
+    
+    if "MOVE_LEFT" in request:
+        move_stepper(100, 0)
+    elif "MOVE_RIGHT" in request:
+        move_stepper(100, 1)
+    
+    client.send("HTTP/1.1 200 OK\n\n")
+    client.close()
