@@ -6,6 +6,7 @@ The **Smart Telescope** project aims to create a telescope that can be controlle
 ## Demo Video
 
 📽️ [Watch the Smart Telescope in Action on Vimeo](https://vimeo.com/1103012977)
+To see demo images and GIFs of the Smart Telescope in action, please check the `TELESCOPE/` folder in this repository.
 
 ## Features
 
