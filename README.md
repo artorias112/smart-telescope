@@ -5,7 +5,7 @@
 The **Smart Telescope** project aims to create a telescope that can be controlled remotely via a mobile application, providing a seamless user experience for astronomy enthusiasts. The project utilizes an **ESP32 microcontroller**, **MG90 servos**, and **wireless communication** to achieve precise movement and cloud integration for remote control. The project also integrates a **camera system** for live video streaming and image capturing, all controllable through a custom app built using **MIT App Inventor**.
 ## Demo Video
 
-📽️ [Watch the Smart Telescope in Action on Vimeo](https://vimeo.com/1103012977)
+📽️ [Watch the Smart Telescope in Action on Vimeo](https://vimeo.com/1103012977).
 To see demo images and GIFs of the Smart Telescope in action, please check the `TELESCOPE/` folder in this repository.
 
 ## Features
