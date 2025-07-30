@@ -51,6 +51,37 @@ To see demo images and GIFs of the Smart Telescope in action, please check the `
 3. View live footage from the camera integrated with the telescope in real-time.
 4. Adjust the camera angle using the app's controls to capture different views.
 5. Enjoy exploring the sky remotely, with full control over your telescope system!
+## Challenges Faced and How They Were Solved
+
+### Syncing Commands Between the App and Hardware  
+**The Challenge:** Firebase commands weren’t syncing correctly with the ESP32, causing timing mismatches.  
+**The Solution:** I restructured the key-value logic in Firebase and optimized the communication cycle to reduce latency and improve command reliability.
+
+---
+
+### Limited UI Design Options in MIT App Inventor  
+**The Challenge:** The visual design tools in MIT App Inventor were limited, making it difficult to build a modern-looking interface.  
+**The Solution:** I focused on functionality over aesthetics by creating a clean, minimal layout that ensured responsive control and intuitive navigation.
+
+---
+
+### Camera Streaming via ESP32-CAM  
+**The Challenge:** The ESP32-CAM kept disconnecting, and the stream was inconsistent.  
+**The Solution:** I lowered the frame size and ensured a stable power supply to reduce thermal load and prevent Wi-Fi dropouts during operation.
+
+---
+
+### Servo Calibration  
+**The Challenge:** The servo motors weren’t moving accurately, and the angles weren’t consistent.  
+**The Solution:** I manually tested and mapped the duty cycle range for the MG90 servos, fine-tuning values through trial and error until I achieved smooth movement.
+
+---
+
+### Power Constraint  
+**The Challenge:** The ESP32 couldn’t provide enough power for the MG90 servo motor to function properly.  
+**The Solution:** I powered the servo through an external regulated 5V source instead of relying on the ESP32’s onboard supply, ensuring stable operation without brownouts.
+
+
 
 ## Future Enhancements
 
